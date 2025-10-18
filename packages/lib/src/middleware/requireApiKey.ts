@@ -144,6 +144,8 @@ export async function setRequestSpaceFromApiKey(req: NextApiRequest): Promise<Sp
  * assigns authorizedSpaceId so follow-on endpoints can use it
  */
 export async function requireApiKey(req: NextApiRequest, res: NextApiResponse, next: NextHandler) {
+  await setRequestSpaceFromApiKey(req);
+
   try {
     const querySpaceId = req.query?.spaceId;
 
